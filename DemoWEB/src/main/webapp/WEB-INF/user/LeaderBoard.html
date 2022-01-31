@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Leader board</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../css/mystyle.css" th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+	<div align="right">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	<h1>Welcome to the Gamified Marketing Application LeaderBoard Page</h1>
+
+	<!-- reviews of the user -->
+	<div>
+		<h3>LeaderBoard of the day</h3>
+		<table  th:if="${leaderBoard!=null}">
+			<thead>
+				<tr>
+					<th>User</th>
+					<th>points</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="r : ${leaderBoard}">
+					<td th:text="${r.username}"></td>
+					<td th:text="${r.points}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</br>
+	<div>
+		<a th:href="@{/Home}">Go To The Home</a>
+	</div>
+</body>
+</html>

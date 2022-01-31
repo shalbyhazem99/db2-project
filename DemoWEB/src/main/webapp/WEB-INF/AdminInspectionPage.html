@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Inspection</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+	<div align="right">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	<h1>Welcome to the Gamified Marketing Application Inspection Page(ADMIN)</h1>
+	<p th:text="${'Nice to see you again ' + session.user.username}"></p>
+	<!-- link for the questionnaire of the day and for the leader board -->
+	<!-- reviews of the user -->
+	<div>
+		<form action="InspectQuestionnaire" method="post">
+				Date: <input type="date" name="date" required/> </br> </br>
+				<input type="submit" value="submit" />
+		</form>
+	</div>
+	</br>
+	<div>
+		<a th:href="@{/HomeAdmin}">Go To Home Page</a>
+	</div>
+	</br>
+</body>
+</html>

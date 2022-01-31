@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login page</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="css/mystyle.css" th:href="@{/css/mystyle.css}" />
+<style type="text/css">
+html, body {
+    height: 100%;
+}
+.main {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+.wrapper {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<div class = "main"><div class = "wrapper">
+	<h1>Welcome to the Gamified Marketing Application</h1>
+	</br>
+	<form action="CheckLogin" method="POST">
+		<input type="text" name="username" placeholder="username" th:value="${usernameVal}" required></br> </br>
+		<input type="password" name="pwd" placeholder="password" th:value="${passwordVal}" required></br><br>
+		<input type="submit" value="login">
+		<p><a href="/DemoWEB/Register.html">Register</a></p>
+		<p th:text="${errorMsg}"></p>
+	</form>
+	</div></div>
+
+</body>
+</html>

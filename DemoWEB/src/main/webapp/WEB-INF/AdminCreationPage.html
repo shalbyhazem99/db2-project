@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+<style type="text/css">
+td, th {
+	border: 1px solid transparent;
+	text-align: center;
+	padding: 8px;
+}
+</style>
+</head>
+<body>
+	<div align="right">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	<h1>Welcome to the Gamified Marketing Application Creation Page</h1>
+	<p th:text="${'Nice to see you again ' + session.user.username}"></p>
+	<!-- link for the questionnaire of the day and for the leader board -->
+	<!-- reviews of the user -->
+	<div>
+		<form action="AddQuestionnaire" method="post">
+			<div id="firstPart" style="display: inline">
+
+				<table>
+					<tbody>
+						<tr>
+							</td>
+							<td>Date</td>
+							<td><input type="date" name="date" id="date" required/></td>
+							</td>
+						</tr>
+						<tr>
+							</td>
+							<td>Product</td>
+							<td><input list="products" name="product" id="product" required> <datalist
+									id="products">
+									<option th:each="p: ${products}" th:label=" ${p.name}"
+										th:value="${p.id}">
+								</datalist></td>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+				</br> <input type="button" onclick="nextClicked()"
+					value="insert questions" />
+			</div>
+
+			<div id="secondPart" style="display: none">
+				<p>Questions</p>
+				<div>
+					<table>
+						<tbody id="questions">
+						</tbody>
+
+					</table>
+
+				</div>
+				<input type="button" onclick="addQuestion()"
+					value="add another question" /> <input type="submit"
+					value="submit" />
+			</div>
+
+		</form>
+	</div>
+
+	<script>
+		function nextClicked() {
+			let valid = true;
+			if (!document.getElementById("date").checkValidity()) {
+				document.getElementById("date").reportValidity();
+				valid = false;
+			}
+			else if (!document.getElementById("product").checkValidity()) {
+				document.getElementById("product").reportValidity();
+				valid = false;
+			}
+			if (valid) {
+				document.getElementById("firstPart").style.display = "none";
+				document.getElementById("secondPart").style.display = "inline";
+			}
+		}
+
+		function addQuestion() {
+			//document.getElementById("questions").appendChild('Question: <input type="text" name="question"/> </br> ');
+			const div = document.createElement('tr');
+
+			div.className = 'row';
+
+			div.innerHTML = '<td><input type="text" name="question" required/></td><td><input type="button" value="x" onclick="removeRow(this)" /></td>';
+			document.getElementById('questions').appendChild(div);
+
+		}
+
+		function removeRow(input) {
+			document.getElementById('questions').removeChild(
+					input.parentNode.parentNode);
+		}
+	</script>
+</body>
+</html>

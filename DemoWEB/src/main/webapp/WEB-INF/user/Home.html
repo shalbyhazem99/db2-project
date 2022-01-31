@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../css/mystyle.css" th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+	<div align="right">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	<h1>Welcome to the Gamified Marketing Application Home Page</h1>
+	<p th:text="${'Nice to see you again ' + session.user.username}"></p>
+	<!-- link for the questionnaire of the day and for the leader board -->
+	<div th:if="${!session.user.active}">
+	<h3>BANNED!! You cannot do nothing</h3>
+	</div>
+	<div th:if="${ session.user.active}">
+		<div th:if="${product!=null}">
+			<a th:href="@{/Questionnaire}">Go To The Questionnaire Of The Day</a>
+		</div>
+		<div>
+			<a th:href="@{/LeaderBoard}">Go To The LeaderBoard</a>
+		</div>
+		<!-- product of the day information -->
+		<div th:if="${product!=null}">
+			<h3 th:text="${'Product of the day: '+ product.name }">Reviews
+				on the product of the day</h3>
+			<img alt="product image" width="200"
+				th:src="*{'data:image/png;base64,'+ product.getImageData()}">
+		</div>
+		<!-- reviews of the user -->
+		<div th:if="${product!=null}">
+			<h3>Reviews of the product of the day</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>User</th>
+						<th>Review</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="r : ${reviews}">
+						<td th:text="${r.key.username}"></td>
+						<td th:text="${r.value}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:if="${product==null}">
+			<p>No questionnaire available for today</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Delete</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+	<div align="right">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	<h1>Welcome to the Gamified Marketing Application Deletion Page</h1>
+	<p th:text="${'Nice to see you again ' + session.user.username}"></p>
+	<!-- link for the questionnaire of the day and for the leader board -->
+	<!-- reviews of the user -->
+	<div>
+		<form action="#" method="post">
+				Date: <input type="date" name="date" /> </br> </br>
+				<input type="submit" value="submit" />
+		</form>
+	</div>
+	</br>
+	<div>
+		<a th:href="@{/HomeAdmin}">Go To Home Page</a>
+	</div>
+	</br>
+</body>
+</html>

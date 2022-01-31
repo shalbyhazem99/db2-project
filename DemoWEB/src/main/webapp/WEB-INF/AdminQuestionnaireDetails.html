@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Inspection</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+	<div align="right">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	<h1>Welcome to the Gamified Marketing Application Inspection Page(ADMIN)</h1>
+	<p th:text="${'Nice to see you again ' + session.user.username}"></p>
+	<p th:text="${'Selected date: '+date}"/>
+	<div th:if="${records ==null}">
+	<p>No info to visualize about the selected data</p>
+	</div>
+	
+	<div th:if="${records !=null}">
+		<table>
+			<thead>
+				<tr>
+					<th>User</th>
+					<th>Answers</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="r : ${records}">
+					<td th:text="${r.user.username}"></td>
+					<div th:if="${r.submit}">
+					<td>
+					<p>SUBMITTED</p>
+					<table >
+						<thead>
+							<tr>
+								<th>Question</th>
+								<th>Answer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="a : ${r.answers}">
+								<td th:text="${a.key.text}"></td>
+								<td th:text="${a.value}"></td>
+							</tr>
+						</tbody>
+					</table>
+					</td>
+					</div>
+					<div th:if="${!r.submit}">
+					<td>
+					<p>CANCELLED</p>
+					</td>
+					</div>
+					
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</br>
+		<div>
+		<a th:href="@{/HomeAdmin}">Go To Home Page</a>
+	</div>
+	</br>
+</body>
+</html>

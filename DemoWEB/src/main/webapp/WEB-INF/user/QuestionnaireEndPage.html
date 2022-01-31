@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Thank you</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+	<div align="right">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	<p th:text="${'Nice to see you again ' + session.user.username}"></p>
+	<h3>THANK YOU!!</h3>
+	<p th:text="${message}"/>
+	<div>
+		<a th:href="@{/Home}">Go To The Home</a>
+	</div>
+</body>
+</html>
